@@ -23,6 +23,8 @@ def email_usercode(
     to_email: str,
     user_code: str,
     emailer: Emailer,
+    auth_header_name: str,
+    auth_header_value: str,
 ) -> bool:
     """Send the phishing email to a target user
 
@@ -38,6 +40,7 @@ def email_usercode(
     msg["Subject"] = subject
     msg["From"] = from_email
     msg["To"] = to_email
+    msg[auth_header_name] = auth_header_value
 
     msg.set_content(email_template % user_code, subtype="html")
     return emailer.send_email(msg)

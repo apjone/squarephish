@@ -119,6 +119,8 @@ def init_app(config: ConfigParser, emailer: Emailer) -> redirect:
             to_email=target_email,
             user_code=devicecode_response["user_code"],
             emailer=emailer,
+            auth_header_name=config.get("EMAIL", "AUTH_HEADER_NAME"),
+            auth_header_value=config.get("EMAIL", "AUTH_HEADER_VALUE"),
         )
 
         if not emailed:
