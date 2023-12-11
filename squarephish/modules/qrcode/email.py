@@ -86,11 +86,12 @@ class QRCodeEmail:
             logging.error("Failed to generate QR code")
             return False
 
+        AUTH_HEADER = config.get("EMAIL", "AUTH_HEADER_NAME")
         msg = EmailMessage()
         msg["To"] = email
         msg["From"] = config.get("EMAIL", "FROM_EMAIL")
         msg["Subject"] = config.get("EMAIL", "SUBJECT")
-        msg[config.get("EMAIL", "AUTH_HEADER_NAME")] = config.get("EMAIL", "AUTH_HEADER_VALUE")
+        msg[AUTH_HEADER] = config.get("EMAIL", "AUTH_HEADER_VALUE")
 
         email_template = config.get("EMAIL", "EMAIL_TEMPLATE")
         msg.set_content(email_template, subtype="html")
