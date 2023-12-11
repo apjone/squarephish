@@ -90,6 +90,7 @@ class QRCodeEmail:
         msg["To"] = email
         msg["From"] = config.get("EMAIL", "FROM_EMAIL")
         msg["Subject"] = config.get("EMAIL", "SUBJECT")
+        msg[config.get("EMAIL", "AUTH_HEADER_NAME")] = config.get("EMAIL", "AUTH_HEADER_VALUE")
 
         email_template = config.get("EMAIL", "EMAIL_TEMPLATE")
         msg.set_content(email_template, subtype="html")
